@@ -160,38 +160,82 @@ const profiles = {
     P: {
         name: "Le Protecteur",
         tagline: "\"Avant tout, sécuriser mon futur.\"",
-        summary: "Vous cherchez avant tout à sécuriser votre avenir financier. Pas pour devenir millionnaire du jour au lendemain. Pas pour battre le marché. Simplement pour éviter de subir : l'inflation, les erreurs coûteuses, ou la sensation de perdre le contrôle de votre futur. Et honnêtement, cette prudence n'est pas un défaut. Le problème, c'est que beaucoup de personnes comme vous restent bloquées trop longtemps dans l'attente du bon moment… qui n'arrive jamais vraiment.",
+        summary: "Vous cherchez avant tout à sécuriser votre avenir financier. Pas pour devenir millionnaire du jour au lendemain. Pas pour battre le marché. Simplement pour éviter de subir : l'inflation, les erreurs coûteuses, ou la sensation de perdre le contrôle de votre futur. Et honnêtement, cette prudence n'est pas un défaut. Le problème, c'est que beaucoup de personnes comme vous restent bloquées trop longtemps dans l'attente du bon moment qui n'arrive jamais vraiment.",
         traits: [{ name: "Prudence", desc: "Vous réfléchissez avant d'agir." }, { name: "Stabilité", desc: "Vous cherchez un système rassurant et durable." }, { name: "Vigilance", desc: "Vous voulez éviter les pièges et les décisions regrettables." }],
-        approach: "Pour votre profil, la priorité n'est probablement pas la performance maximale. La priorité est de construire une stratégie suffisamment simple et stable pour que vous puissiez la tenir dans le temps. Cela signifie souvent : privilégier la simplicité, éviter les stratégies complexes, investir progressivement, et réduire au maximum les décisions émotionnelles.",
-        errors: ["Attendre trop longtemps avant de commencer", "Garder tout son argent en sécurité pendant que l'inflation agit silencieusement", "Chercher une certitude absolue qui n'existe pas en investissement"],
-        message: "Vous n'avez pas besoin d'aller vite. Vous avez surtout besoin d'avancer suffisamment tôt. Le plus grand risque pour votre profil n'est pas de perdre de l'argent. C'est de rester immobile pendant que le temps et l'inflation travaillent contre vous."
+        message: "Vous n'avez pas besoin d'aller vite. Vous avez surtout besoin d'avancer suffisamment tôt. Le plus grand risque pour votre profil n'est pas de perdre de l'argent. C'est de rester immobile pendant que le temps et l'inflation travaillent contre vous.",
+        p3_intro: "Aujourd'hui, votre argent est probablement sur un compte courant, sur des livrets, ou en attente. Sur le papier, cela parait rassurant. Mais cette securite est souvent trompeuse. En arriere-plan, l'inflation continue, le cout de la vie augmente, et votre argent perd progressivement du pouvoir d'achat. Le plus dangereux pour votre profil, ce n'est pas forcement une mauvaise decision. C'est parfois de ne jamais prendre de decision du tout.",
+        p3_approach: "Votre priorite ne devrait pas etre de maximiser les performances ou de construire quelque chose de complexe. Votre priorite : construire une base simple que vous pourrez tenir pendant des annees. Une bonne strategie doit etre adaptee a votre age, votre horizon de temps, votre stabilite emotionnelle, et votre capacite reelle a gerer les periodes difficiles.",
+        p3_example: "Exemple de logique souvent adaptee : 70-80% ETF diversifies globaux + 20-30% supports stables (fonds euros, monetaire, liquidites). Le plus important n'est pas le pourcentage exact. C'est d'avoir une strategie que vous pourrez reellement tenir emotionnellement sur le long terme.",
+        p4_traps: [
+            { title: 'Attendre le "bon moment"', body: 'Beaucoup de profils Protecteurs pensent : "Je commencerai quand les marches seront plus calmes." Mais les marches ne deviennent jamais vraiment calmes. Attendre une certitude absolue finit souvent par couter plus cher que les fluctuations elles-memes.', fix: 'Commencez petit. Meme 50-100 EUR investis regulierement valent mieux qu\'un plan parfait repoussé indefiniment.' },
+            { title: 'Confondre securite et immobilite', body: 'L\'argent immobile parait rassurant. Mais sur le long terme, l\'inflation agit comme une fuite lente. Le vrai risque n\'est pas seulement la baisse des marches. C\'est aussi la perte progressive de pouvoir d\'achat.', fix: 'Cherchez un equilibre : securite psychologique, mais aussi une exposition progressive au long terme.' },
+            { title: 'Consommer du contenu sans jamais agir', body: 'Beaucoup de personnes prudentes regardent des videos et des analyses pendant des annees sans passer a l\'etape suivante. La connaissance sans action ne construit pas de patrimoine.', fix: 'Fixez-vous une premiere action simple et concrete. Pas "tout comprendre". Juste avancer d\'un cran.' }
+        ],
+        p5_steps: [
+            { title: 'Simplifiez votre vision de l\'investissement', body: 'Vous n\'avez pas besoin d\'etre expert ni de suivre les marches chaque jour. Votre objectif : construire un systeme simple, stable et durable.' },
+            { title: 'Commencez petit, mais maintenant', body: 'Le plus important est de reduire l\'inertie. Meme une petite automatisation mensuelle peut creer un vrai declic psychologique.' },
+            { title: 'Construisez progressivement votre confiance', body: 'La confiance ne vient pas avant l\'action. Elle vient apres les premiers mois d\'experience reelle. Votre objectif : arreter de rester immobile.' }
+        ]
     },
     E: {
         name: "L'Explorateur",
         tagline: "\"Je cherche encore ma méthode.\"",
-        summary: "Vous sentez qu'il existe de vraies opportunités financières, mais plus vous regardez du contenu… plus tout semble contradictoire. ETF, dividendes, immobilier, crypto, trading : vous avez probablement déjà entendu dix versions différentes de la meilleure stratégie. Et à force de vouloir comprendre parfaitement, beaucoup de profils comme vous finissent par tourner en rond.",
+        summary: "Vous sentez qu'il existe de vraies opportunités financières, mais plus vous regardez du contenu, plus tout semble contradictoire. ETF, dividendes, immobilier, crypto, trading : vous avez probablement déjà entendu dix versions différentes de la meilleure stratégie. Et à force de vouloir comprendre parfaitement, beaucoup de profils comme vous finissent par tourner en rond.",
         traits: [{ name: "Curiosité", desc: "Vous aimez apprendre et découvrir." }, { name: "Ouverture", desc: "Vous remettez en question les schémas classiques." }, { name: "Surcharge", desc: "Trop d'infos crée parfois une paralysie." }],
-        approach: "Pour votre profil, le plus important est souvent de réduire le bruit. Vous n'avez pas besoin de suivre toutes les tendances ni de tester toutes les stratégies. Les approches les plus solides reposent sur des principes simples, une logique claire, une vision long terme, et peu de décisions émotionnelles.",
-        errors: ["Changer constamment de stratégie sans jamais construire quelque chose de solide", "Consommer plus de contenu qu'on ne passe à l'action", "Chercher la stratégie parfaite qui n'existe pas"],
-        message: "Votre vrai levier n'est pas d'apprendre toujours plus. C'est de simplifier suffisamment pour enfin avancer avec confiance. La clarté crée souvent beaucoup plus de résultats que la complexité."
+        message: "Votre vrai levier n'est pas d'apprendre toujours plus. C'est de simplifier suffisamment pour enfin avancer avec confiance. La clarté crée souvent beaucoup plus de résultats que la complexité.",
+        p3_intro: "Vous avez probablement deja regarde des videos sur les ETF, des debats sur l'immobilier, des contenus sur la crypto, les dividendes, la macro. Et plus vous apprenez, plus tout semble contradictoire. Le probleme n'est pas votre intelligence. C'est l'exces d'informations. Beaucoup de profils comme vous savent enormement de choses... mais n'ont toujours pas construit de vraie base.",
+        p3_approach: "Votre priorite n'est probablement pas d'apprendre encore plus. Votre priorite : simplifier. Une bonne strategie n'est pas celle qui impressionne. C'est celle que vous comprenez suffisamment pour la garder pendant des annees. Elle doit correspondre a votre age, votre situation reelle, et votre tolerance emotionnelle.",
+        p3_example: "Exemple de logique souvent adaptee : 70-90% ETF globaux diversifies + 10-30% exposition ciblee selon les convictions. Le plus important : arreter de changer constamment de direction et laisser le temps faire son travail.",
+        p4_traps: [
+            { title: 'Chercher la strategie parfaite', body: 'A force d\'optimiser mentalement chaque detail, beaucoup de profils Explorateurs ne construisent jamais rien de solide. La strategie parfaite n\'existe pas. Une bonne strategie appliquee vaut infiniment mieux.', fix: 'Choisissez une base simple et tenez-la. Vous pourrez toujours l\'ameliorer une fois qu\'elle est en place.' },
+            { title: 'Confondre curiosite et progression', body: 'Regarder du contenu donne une impression d\'avancer. Mais la vraie progression commence au moment ou vous appliquez enfin une methode concrete et que vous restez dessus.', fix: 'Transformez chaque nouvelle information en decision concrete. Apprendre sans agir, c\'est tourner en rond.' },
+            { title: 'Changer constamment de direction', body: 'Une semaine ETF, la suivante dividendes, puis crypto ou immobilier. Le cerveau adore la nouveaute. Le patrimoine, lui, aime surtout la coherence et la regularite.', fix: 'Gardez une strategie suffisamment longtemps pour lui laisser une chance de fonctionner.' }
+        ],
+        p5_steps: [
+            { title: 'Reduisez le bruit informationnel', body: 'Arretez de suivre 15 strategies differentes en meme temps. Choisissez une approche, une logique, un cadre clair. La simplicite bat presque toujours la complexite sur le long terme.' },
+            { title: 'Construisez une base avant d\'optimiser', body: 'Avant de chercher des performances ou des opportunites, construisez d\'abord une fondation simple et stable. L\'optimisation n\'a de sens que sur quelque chose qui tient dans le temps.' },
+            { title: 'Passez du contenu a l\'action', body: 'Le vrai declic arrive souvent au moment ou l\'investissement devient concret. Pas quand vous regardez une video de plus.' }
+        ]
     },
     PI: {
         name: "Le Pilote",
         tagline: "\"Je veux un système propre et efficace.\"",
         summary: "Vous ne cherchez pas seulement à investir. Vous cherchez à construire un système propre, logique et efficace. Vous aimez comprendre comment les choses fonctionnent réellement : les frais, les mécanismes, les plateformes, la fiscalité, les stratégies long terme. Et contrairement à beaucoup de gens, vous êtes déjà dans une démarche active.",
         traits: [{ name: "Discipline", desc: "Vous suivez une logique sur le long terme." }, { name: "Analyse", desc: "Vous aimez comprendre les détails." }, { name: "Efficacité", desc: "Vous voulez un système cohérent dès le départ." }],
-        approach: "Pour votre profil, les approches simples mais structurées sont souvent les plus pertinentes. L'objectif n'est pas de compliquer votre portefeuille. L'objectif est d'avoir un système robuste que vous pourrez tenir pendant des années. Les investisseurs les plus performants ne sont pas ceux qui font le plus de mouvements — ce sont ceux qui évitent les erreurs inutiles.",
-        errors: ["Complexifier trop tôt en multipliant stratégies et produits", "Chercher à battre le marché en prenant des risques inutiles", "Modifier constamment un système qui fonctionne déjà"],
-        message: "Votre avantage principal est déjà là : vous êtes structuré. Maintenant, le plus important est d'éviter de transformer l'optimisation en distraction. La simplicité bien exécutée reste extrêmement difficile à battre sur le long terme."
+        message: "Votre avantage principal est déjà là : vous êtes structuré. Maintenant, le plus important est d'éviter de transformer l'optimisation en distraction. La simplicité bien exécutée reste extrêmement difficile à battre sur le long terme.",
+        p3_intro: "Contrairement a beaucoup de particuliers, vous etes deja dans une logique de construction active. Vous cherchez a comprendre les mecanismes, optimiser les frais, structurer vos decisions. C'est une excellente chose. Le risque pour votre profil n'est plus l'inaction. Le risque, c'est de transformer l'optimisation en complexite permanente.",
+        p3_approach: "Votre profil fonctionne souvent mieux avec des regles claires, une logique rationnelle, et un systeme stable dans le temps. Attention : plus une strategie devient complexe, plus elle devient difficile a tenir emotionnellement pendant les crises. L'objectif n'est pas d'avoir la strategie la plus sophistiquee. L'objectif est d'avoir une strategie robuste.",
+        p3_example: "Exemple de logique souvent adaptee : 70-85% ETF diversifies globaux + 15-30% expositions complementaires raisonnees. Le plus important : eviter que chaque nouvelle idee remette en cause l'ensemble du systeme.",
+        p4_traps: [
+            { title: 'Complexifier trop tot', body: 'Beaucoup de profils analytiques ajoutent trop de comptes, trop d\'ETF, trop de regles. Resultat : la strategie devient plus fragile, pas plus solide.', fix: 'Si une optimisation complique enormement votre systeme pour un gain marginal, elle n\'est probablement pas necessaire.' },
+            { title: 'Chercher a battre le marche', body: 'Le besoin de performance peut pousser a prendre des risques inutiles. Beaucoup d\'investisseurs detruisent une bonne strategie simplement parce qu\'elle leur semblait "trop simple".', fix: 'Mesurez votre strategie sur 10-20 ans. Pas sur les performances des 3 derniers mois.' },
+            { title: 'Modifier constamment une strategie correcte', body: 'L\'optimisation permanente cree souvent du doute, des erreurs, et des decisions emotionnelles deguisees en rationalite. Un systeme qui fonctionne n\'a pas besoin d\'etre touche en permanence.', fix: 'Donnez du temps a votre systeme avant de vouloir le modifier. La regularite bat presque toujours l\'agitation.' }
+        ],
+        p5_steps: [
+            { title: 'Simplifiez ce qui peut l\'etre', body: 'Votre systeme doit rester lisible, reproductible, et robuste. Si vous ne pouvez pas l\'expliquer en deux minutes, il est probablement trop complexe.' },
+            { title: 'Concentrez-vous sur les vrais leviers', body: 'Les vrais leviers long terme sont souvent : la regularite, les frais, la discipline, et le temps. Pas les micro-ajustements de court terme.' },
+            { title: 'Preparez votre systeme pour les crises', body: 'Une strategie n\'est reellement solide que lorsqu\'elle reste applicable emotionnellement pendant les periodes difficiles. Concevez-la pour durer.' }
+        ]
     },
     V: {
         name: "Le Visionnaire",
         tagline: "\"Je veux construire ma liberté financière.\"",
         summary: "Vous voyez l'investissement comme quelque chose de plus grand qu'un simple placement. Pour vous, il s'agit de construire une vraie liberté : plus de sécurité, plus d'options, plus de contrôle sur votre vie future. Vous pensez naturellement long terme. Et contrairement à beaucoup de personnes, vous comprenez probablement déjà que le temps peut devenir un levier extrêmement puissant.",
         traits: [{ name: "Vision", desc: "Vous pensez sur plusieurs années." }, { name: "Ambition", desc: "Vous voulez construire un vrai patrimoine." }, { name: "Résilience", desc: "Vous acceptez la volatilité des marchés." }],
-        approach: "Pour votre profil, les approches long terme et fortement disciplinées sont souvent les plus cohérentes. L'essentiel est de construire une stratégie suffisamment solide pour traverser les cycles économiques sans paniquer. La vraie difficulté n'est pas d'investir pendant les périodes faciles — c'est de rester cohérent pendant les crises.",
-        errors: ["Sous-estimer l'impact émotionnel des crises, même pour les investisseurs confiants", "Prendre des risques inutiles pour accélérer trop vite", "Se laisser distraire par des opportunités exceptionnelles hors plan"],
-        message: "Votre force est votre vision. Mais votre véritable avantage viendra surtout de votre capacité à rester discipliné pendant les périodes où les autres abandonnent. En investissement, la patience est souvent beaucoup plus rare — et beaucoup plus rentable — que le génie."
+        message: "Votre force est votre vision. Mais votre véritable avantage viendra surtout de votre capacité à rester discipliné pendant les périodes où les autres abandonnent. En investissement, la patience est souvent beaucoup plus rare et beaucoup plus rentable que le génie.",
+        p3_intro: "Vous voyez probablement l'investissement comme un levier de liberte et de construction patrimoniale. Vous acceptez plus facilement que la moyenne les fluctuations et l'incertitude. Vous pensez naturellement long terme. C'est une vraie force. Mais cette confiance peut aussi pousser a vouloir accelerer inutilement ou a prendre des risques sous-estimes.",
+        p3_approach: "Votre profil fonctionne souvent bien avec une forte discipline, une vision long terme, et une strategie capable de traverser plusieurs cycles economiques. Attention : meme avec une bonne tolerance au risque, une strategie doit rester adaptee a votre age, vos responsabilites, et votre capacite emotionnelle reelle.",
+        p3_example: "Exemple de logique souvent adaptee : 80-100% ETF actions diversifies + 0-20% supports plus defensifs selon l'age et la situation. Le plus important : avoir une strategie que vous pourrez continuer a suivre quand les marches deviendront emotionnellement difficiles.",
+        p4_traps: [
+            { title: "Sous-estimer l'impact emotionnel des crises", body: "Tout le monde pense supporter la volatilite... jusqu'a vivre une vraie crise. Les marches paraissent tres differents quand les medias paniquent, les portefeuilles chutent fortement, et l'incertitude devient reelle.", fix: "Construisez une strategie legerement plus prudente que ce que votre confiance actuelle suggere." },
+            { title: 'Chercher a accelerer inutilement', body: 'Beaucoup de profils Visionnaires finissent attires par l\'effet de levier, les paris speculatifs, les "opportunites exceptionnelles". C\'est souvent la que les erreurs deviennent les plus couteuses.', fix: 'La richesse durable vient de la coherence et de la regularite, pas des coups d\'accelerateur.' },
+            { title: 'Prendre confiance trop vite apres une hausse', body: 'Les periodes de hausse donnent parfois l\'impression que le risque a disparu. C\'est souvent precisement a ce moment-la qu\'il faut rester le plus discipline.', fix: 'Gardez vos regles stables meme quand tout semble facile. C\'est la que se joue vraiment la performance long terme.' }
+        ],
+        p5_steps: [
+            { title: 'Renforcez la discipline avant d\'augmenter le risque', body: 'Votre plus grand avantage long terme ne sera pas votre agressivite. Ce sera votre capacite a rester stable et coherent pendant les periodes ou les autres abandonnent.' },
+            { title: 'Construisez une strategie pour plusieurs crises', body: 'Une vraie strategie long terme doit survivre aux recessions, aux paniques, et aux periodes d\'euphorie. Concevez-la pour durer 20 ans, pas 2 ans.' },
+            { title: 'Continuez a penser en decennies', body: 'Les marches recompensent rarement les plus impatients. Votre avantage reel vient probablement deja de votre horizon de temps. Preservez-le.' }
+        ]
     }
 };
 
@@ -237,17 +281,14 @@ function getWinningProfile() {
 function showResult() {
     currentProfileKey = getWinningProfile();
     const profile = profiles[currentProfileKey];
-
     document.getElementById('result-name').textContent = profile.name;
     document.getElementById('result-tagline').textContent = profile.tagline;
     document.getElementById('result-summary').textContent = profile.summary;
-
     const traitsContainer = document.getElementById('result-traits');
     traitsContainer.innerHTML = '';
     profile.traits.forEach(t => {
         traitsContainer.innerHTML += `<div class="trait-card"><div class="trait-name">${t.name}</div><div class="trait-desc">${t.desc}</div></div>`;
     });
-
     showScreen('screen-result');
 }
 
@@ -281,10 +322,8 @@ async function submitEmail() {
     const profile = profiles[currentProfileKey];
     const maxScore = Math.max(...Object.values(scores));
     await saveToAirtable(email, profile.name, 'Quiz Profil Investisseur', maxScore);
-
     document.getElementById('email-form').style.display = 'none';
     document.getElementById('pdf-section').style.display = 'block';
-
     const unlockSection = document.querySelector('.unlock-section');
     unlockSection.querySelector('.unlock-icon').textContent = '✅';
     unlockSection.querySelector('.unlock-title').textContent = 'Votre analyse est prête !';
@@ -296,71 +335,99 @@ function downloadPDF() {
     const doc = new jsPDF();
     const profile = profiles[currentProfileKey];
 
-    // PAGE 1 — COVER
+    const gold = [201, 168, 76];
+    const darkBg = [13, 13, 13];
+
+    function pageHeader(doc, rightLabel) {
+        doc.setFillColor(255, 255, 255);
+        doc.rect(0, 0, 210, 297, 'F');
+        let y = 18;
+        doc.setTextColor(201, 168, 76);
+        doc.setFontSize(8);
+        doc.setFont('helvetica', 'bold');
+        doc.text('MONARQ', 20, y);
+        doc.setTextColor(180, 180, 180);
+        doc.text(rightLabel, 190, y, { align: 'right' });
+        doc.setDrawColor(230, 230, 230);
+        doc.setLineWidth(0.3);
+        doc.line(20, y + 4, 190, y + 4);
+        return y + 18;
+    }
+
+    function sectionLabel(doc, label, y) {
+        doc.setTextColor(150, 150, 150);
+        doc.setFontSize(7.5);
+        doc.setFont('helvetica', 'bold');
+        doc.text(label, 20, y);
+        return y + 7;
+    }
+
+    function bodyText(doc, text, y, width) {
+        width = width || 170;
+        doc.setTextColor(60, 60, 60);
+        doc.setFontSize(9.5);
+        doc.setFont('helvetica', 'normal');
+        const lines = doc.splitTextToSize(text, width);
+        doc.text(lines, 20, y);
+        return y + lines.length * 5 + 10;
+    }
+
+    // ─── PAGE 1 — COUVERTURE ───────────────────────────────────────────────
     doc.setFillColor(13, 13, 13);
     doc.rect(0, 0, 210, 297, 'F');
+
     doc.setTextColor(201, 168, 76);
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
-    doc.text('M O N A R Q', 105, 90, { align: 'center' });
+    doc.text('M O N A R Q', 105, 88, { align: 'center' });
+
     doc.setTextColor(120, 120, 120);
     doc.setFontSize(11);
     doc.setFont('helvetica', 'normal');
-    doc.text('Votre profil investisseur', 105, 108, { align: 'center' });
+    doc.text('Votre profil investisseur', 105, 106, { align: 'center' });
+
     doc.setDrawColor(201, 168, 76);
     doc.setLineWidth(0.3);
-    doc.line(60, 118, 150, 118);
+    doc.line(60, 116, 150, 116);
+
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(26);
     doc.setFont('helvetica', 'bold');
-    doc.text(profile.name, 105, 140, { align: 'center' });
+    doc.text(profile.name, 105, 138, { align: 'center' });
+
     doc.setTextColor(201, 168, 76);
     doc.setFontSize(11);
     doc.setFont('helvetica', 'italic');
     const taglineClean = profile.tagline.replace(/"/g, '');
-    doc.text(taglineClean, 105, 158, { align: 'center' });
-    doc.setTextColor(60, 60, 60);
+    doc.text(taglineClean, 105, 156, { align: 'center' });
+
+    doc.setDrawColor(40, 40, 40);
+    doc.setLineWidth(0.2);
+    doc.line(40, 218, 170, 218);
+
+    doc.setTextColor(70, 70, 70);
+    doc.setFontSize(7.5);
+    doc.setFont('helvetica', 'italic');
+    const disclaimerText = 'Ce document est fourni a titre educatif et informatif uniquement. Il ne constitue pas un conseil en investissement personnalise au sens de la reglementation AMF. Toute decision d\'investissement vous appartient et doit tenir compte de votre situation personnelle.';
+    const disclaimerLines = doc.splitTextToSize(disclaimerText, 130);
+    doc.text(disclaimerLines, 105, 228, { align: 'center' });
+
+    doc.setTextColor(40, 40, 40);
     doc.setFontSize(8);
     doc.setFont('helvetica', 'normal');
-    doc.text('© MONARQ — Contenu éducatif uniquement. Ne constitue pas un conseil financier personnalisé.', 105, 285, { align: 'center' });
+    doc.text('© MONARQ — Contenu educatif uniquement.', 105, 285, { align: 'center' });
 
-    // PAGE 2 — PROFIL
+    // ─── PAGE 2 — PORTRAIT ────────────────────────────────────────────────
     doc.addPage();
-    doc.setFillColor(255, 255, 255);
-    doc.rect(0, 0, 210, 297, 'F');
+    let y = pageHeader(doc, profile.name.toUpperCase());
 
-    let y = 18;
-    doc.setTextColor(201, 168, 76);
-    doc.setFontSize(8);
-    doc.setFont('helvetica', 'bold');
-    doc.text('MONARQ', 20, y);
-    doc.setTextColor(180, 180, 180);
-    doc.text(profile.name.toUpperCase(), 190, y, { align: 'right' });
-    doc.setDrawColor(230, 230, 230);
-    doc.setLineWidth(0.3);
-    doc.line(20, y + 4, 190, y + 4);
-    y += 16;
-
-    const addSection = (title, content) => {
-        doc.setTextColor(150, 150, 150);
-        doc.setFontSize(7.5);
-        doc.setFont('helvetica', 'bold');
-        doc.text(title, 20, y);
-        y += 7;
-        doc.setTextColor(40, 40, 40);
-        doc.setFontSize(10);
-        doc.setFont('helvetica', 'normal');
-        const lines = doc.splitTextToSize(content, 170);
-        doc.text(lines, 20, y);
-        y += lines.length * 5 + 10;
-    };
-
-    addSection('QUI VOUS ÊTES', profile.summary);
+    y = sectionLabel(doc, 'QUI VOUS ETES', y);
+    y = bodyText(doc, profile.summary, y);
 
     doc.setTextColor(150, 150, 150);
     doc.setFontSize(7.5);
     doc.setFont('helvetica', 'bold');
-    doc.text('VOS TRAITS CARACTÉRISTIQUES', 20, y);
+    doc.text('VOS TRAITS CARACTERISTIQUES', 20, y);
     y += 8;
 
     profile.traits.forEach(t => {
@@ -375,168 +442,161 @@ function downloadPDF() {
         y += 14;
     });
 
-    y += 4;
-    addSection('APPROCHE GÉNÉRALEMENT ADAPTÉE', profile.approach);
-
-    doc.setTextColor(150, 150, 150);
-    doc.setFontSize(7.5);
-    doc.setFont('helvetica', 'bold');
-    doc.text('LES ERREURS À ÉVITER', 20, y);
-    y += 7;
-
-    profile.errors.forEach(e => {
-        doc.setTextColor(40, 40, 40);
-        doc.setFontSize(10);
-        doc.setFont('helvetica', 'normal');
-        const lines = doc.splitTextToSize('— ' + e, 170);
-        doc.text(lines, 20, y);
-        y += lines.length * 5 + 4;
-    });
-
-    y += 6;
+    y += 10;
     doc.setFillColor(201, 168, 76);
-    doc.rect(20, y, 2, 22, 'F');
+    doc.rect(20, y, 2, 26, 'F');
     doc.setTextColor(60, 60, 60);
     doc.setFontSize(9.5);
     doc.setFont('helvetica', 'italic');
     const msgLines = doc.splitTextToSize(profile.message, 162);
     doc.text(msgLines, 26, y + 5);
 
-    // PAGE 3 — PHILOSOPHIE
+    // ─── PAGE 3 — VOTRE STRATÉGIE ─────────────────────────────────────────
     doc.addPage();
-    doc.setFillColor(255, 255, 255);
-    doc.rect(0, 0, 210, 297, 'F');
-
-    y = 18;
-    doc.setTextColor(201, 168, 76);
-    doc.setFontSize(8);
-    doc.setFont('helvetica', 'bold');
-    doc.text('MONARQ', 20, y);
-    doc.setTextColor(180, 180, 180);
-    doc.text('LA PHILOSOPHIE', 190, y, { align: 'right' });
-    doc.setDrawColor(230, 230, 230);
-    doc.line(20, y + 4, 190, y + 4);
-    y += 20;
+    y = pageHeader(doc, 'VOTRE STRATEGIE');
 
     doc.setTextColor(40, 40, 40);
-    doc.setFontSize(16);
+    doc.setFontSize(15);
     doc.setFont('helvetica', 'bold');
-    doc.text('Construire un système financier', 20, y);
-    y += 8;
-    doc.text('simple, solide et durable.', 20, y);
-    y += 16;
-
-    doc.setTextColor(100, 100, 100);
+    doc.text('La strategie adaptee', 20, y);
+    y += 7;
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
-    const introText = "La plupart des investisseurs particuliers ne perdent pas parce qu'ils manquent d'intelligence. Ils perdent souvent à cause des émotions, des frais invisibles, des décisions impulsives, ou des stratégies trop complexes pour être tenues dans le temps.";
-    const introLines = doc.splitTextToSize(introText, 170);
-    doc.text(introLines, 20, y);
-    y += introLines.length * 5 + 16;
+    doc.setTextColor(120, 120, 120);
+    doc.text('a votre profil specifique.', 20, y);
+    y += 16;
 
-    const pillars = [
-        { num: '1', title: 'Simplicité', desc: "Une stratégie simple est souvent plus efficace qu'une stratégie compliquée impossible à suivre correctement." },
-        { num: '2', title: 'Long terme', desc: "Les marchés évoluent constamment à court terme. Le temps reste l'un des rares avantages accessibles aux investisseurs particuliers." },
-        { num: '3', title: 'Discipline', desc: "La régularité et le contrôle émotionnel comptent souvent davantage que la recherche du placement parfait." }
-    ];
+    y = sectionLabel(doc, 'OU BEAUCOUP DE PROFILS COMME VOUS RESTENT BLOQUES', y);
+    y = bodyText(doc, profile.p3_intro, y);
 
-    pillars.forEach(p => {
-        doc.setFillColor(245, 245, 245);
-        doc.roundedRect(20, y - 4, 170, 28, 3, 3, 'F');
-        doc.setTextColor(201, 168, 76);
-        doc.setFontSize(14);
-        doc.setFont('helvetica', 'bold');
-        doc.text(p.num, 30, y + 10);
-        doc.setTextColor(40, 40, 40);
-        doc.setFontSize(11);
-        doc.text(p.title, 44, y + 5);
-        doc.setTextColor(100, 100, 100);
-        doc.setFontSize(9);
-        doc.setFont('helvetica', 'normal');
-        const descLines = doc.splitTextToSize(p.desc, 135);
-        doc.text(descLines, 44, y + 12);
-        y += 36;
-    });
+    y = sectionLabel(doc, "L'APPROCHE GENERALEMENT LA PLUS COHERENTE POUR VOUS", y);
+    y = bodyText(doc, profile.p3_approach, y);
 
-    // PAGE 4 — PLAN D'ACTION
+    y = sectionLabel(doc, "EXEMPLE D'APPROCHE SOUVENT ADAPTEE", y);
+    bodyText(doc, profile.p3_example, y);
+
+    // ─── PAGE 4 — LES PIÈGES ──────────────────────────────────────────────
     doc.addPage();
-    doc.setFillColor(255, 255, 255);
-    doc.rect(0, 0, 210, 297, 'F');
-
-    y = 18;
-    doc.setTextColor(201, 168, 76);
-    doc.setFontSize(8);
-    doc.setFont('helvetica', 'bold');
-    doc.text('MONARQ', 20, y);
-    doc.setTextColor(180, 180, 180);
-    doc.text("PLAN D'ACTION", 190, y, { align: 'right' });
-    doc.setDrawColor(230, 230, 230);
-    doc.line(20, y + 4, 190, y + 4);
-    y += 20;
+    y = pageHeader(doc, 'LES PIEGES DE VOTRE PROFIL');
 
     doc.setTextColor(40, 40, 40);
-    doc.setFontSize(16);
+    doc.setFontSize(15);
     doc.setFont('helvetica', 'bold');
-    doc.text('Une progression simple vaut mieux', 20, y);
-    y += 8;
-    doc.text("qu'un plan parfait jamais appliqué.", 20, y);
+    doc.text('3 erreurs specifiques', 20, y);
+    y += 7;
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(120, 120, 120);
+    doc.text('a votre psychologie d\'investisseur.', 20, y);
     y += 18;
 
-    const steps = [
-        { n: '01', title: 'Comprendre votre profil', desc: "Votre comportement face au risque influence souvent davantage vos résultats que le choix exact d'un produit financier." },
-        { n: '02', title: 'Construire une base simple', desc: "Avant de chercher à optimiser, l'objectif est d'avoir une stratégie claire, compréhensible, et suffisamment stable pour être tenue dans le temps." },
-        { n: '03', title: 'Avancer progressivement', desc: "Investir n'est pas une course. La régularité compte souvent davantage que l'intensité." },
-        { n: '04', title: 'Réduire le bruit', desc: "Les marchés financiers génèrent beaucoup d'émotions et de distractions. La discipline consiste à éviter les décisions impulsives." }
-    ];
+    profile.p4_traps.forEach((trap, i) => {
+        doc.setFillColor(13, 13, 13);
+        doc.circle(26, y + 3.5, 4.5, 'F');
+        doc.setTextColor(201, 168, 76);
+        doc.setFontSize(8);
+        doc.setFont('helvetica', 'bold');
+        doc.text(String(i + 1), 26, y + 5.5, { align: 'center' });
 
-    steps.forEach(s => {
+        doc.setTextColor(40, 40, 40);
+        doc.setFontSize(10.5);
+        doc.setFont('helvetica', 'bold');
+        doc.text(trap.title, 34, y + 5);
+        y += 13;
+
+        doc.setTextColor(80, 80, 80);
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'normal');
+        const bodyLines = doc.splitTextToSize(trap.body, 170);
+        doc.text(bodyLines, 20, y);
+        y += bodyLines.length * 4.5 + 5;
+
+        doc.setTextColor(201, 168, 76);
+        doc.setFontSize(7.5);
+        doc.setFont('helvetica', 'bold');
+        doc.text('COMMENT EVITER CA', 20, y);
+        y += 6;
+
+        doc.setTextColor(50, 50, 50);
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'normal');
+        const fixLines = doc.splitTextToSize(trap.fix, 170);
+        doc.text(fixLines, 20, y);
+        y += fixLines.length * 4.5 + 14;
+    });
+
+    // ─── PAGE 5 — PROCHAINES ÉTAPES ───────────────────────────────────────
+    doc.addPage();
+    y = pageHeader(doc, 'VOS PROCHAINES ETAPES');
+
+    doc.setTextColor(40, 40, 40);
+    doc.setFontSize(15);
+    doc.setFont('helvetica', 'bold');
+    doc.text('3 etapes concretes', 20, y);
+    y += 7;
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(120, 120, 120);
+    doc.text('adaptees specifiquement a votre profil.', 20, y);
+    y += 18;
+
+    profile.p5_steps.forEach((step, i) => {
         doc.setFillColor(13, 13, 13);
         doc.circle(26, y + 4, 5, 'F');
         doc.setTextColor(201, 168, 76);
         doc.setFontSize(7);
         doc.setFont('helvetica', 'bold');
-        doc.text(s.n, 26, y + 6, { align: 'center' });
+        doc.text(String(i + 1).padStart(2, '0'), 26, y + 6, { align: 'center' });
+
         doc.setTextColor(40, 40, 40);
         doc.setFontSize(11);
         doc.setFont('helvetica', 'bold');
-        doc.text(s.title, 36, y + 4);
+        doc.text(step.title, 36, y + 5);
+        y += 12;
+
         doc.setTextColor(100, 100, 100);
         doc.setFontSize(9);
         doc.setFont('helvetica', 'normal');
-        const descLines = doc.splitTextToSize(s.desc, 154);
-        doc.text(descLines, 36, y + 11);
-        y += descLines.length * 4.5 + 18;
+        const bodyLines = doc.splitTextToSize(step.body, 154);
+        doc.text(bodyLines, 36, y);
+        y += bodyLines.length * 4.5 + 16;
     });
 
-    // PAGE 5 — CTA
+    // ─── PAGE 6 — CTA ─────────────────────────────────────────────────────
     doc.addPage();
     doc.setFillColor(13, 13, 13);
     doc.rect(0, 0, 210, 297, 'F');
+
     doc.setTextColor(201, 168, 76);
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text('M O N A R Q', 105, 100, { align: 'center' });
+
     doc.setDrawColor(201, 168, 76);
     doc.setLineWidth(0.3);
     doc.line(70, 108, 140, 108);
+
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(18);
     doc.setFont('helvetica', 'bold');
     doc.text('Continuez votre progression', 105, 128, { align: 'center' });
+
     doc.setTextColor(120, 120, 120);
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
-    const ctaText = "L'investissement n'est pas réservé aux experts de la finance. Mais il demande une chose essentielle : construire un système que vous serez capable de garder lorsque les marchés deviendront émotionnellement difficiles.";
+    const ctaText = "L'investissement n'est pas reserve aux experts de la finance. Mais il demande une chose essentielle : construire un systeme que vous serez capable de garder lorsque les marches deviendront emotionnellement difficiles.";
     const ctaLines = doc.splitTextToSize(ctaText, 150);
     doc.text(ctaLines, 105, 148, { align: 'center' });
+
     doc.setTextColor(201, 168, 76);
     doc.setFontSize(10);
     doc.setFont('helvetica', 'bold');
     doc.text('youtube.com/@monarq', 105, 210, { align: 'center' });
+
     doc.setTextColor(60, 60, 60);
     doc.setFontSize(8);
     doc.setFont('helvetica', 'normal');
-    doc.text('© MONARQ — Contenu éducatif uniquement. Ne constitue pas un conseil financier personnalisé.', 105, 285, { align: 'center' });
+    doc.text('© MONARQ — Contenu educatif uniquement. Ne constitue pas un conseil financier personnalise.', 105, 285, { align: 'center' });
 
     doc.save('MONARQ-Profil-' + profile.name.replace(/\s/g, '-') + '.pdf');
 }
