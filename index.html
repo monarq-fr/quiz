@@ -237,10 +237,37 @@ function selectAnswer(profile, btn) {
     }, 300);
 }
 
-function submitEmail() {
+async function saveToAirtable(email, profil, quiz, score) {
+    try {
+        await fetch('https://api.airtable.com/v0/app9ntyMsJx3VAMnL/tblp3ksNAUENKWn55', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer pato8PzhioXenaRyA.7c57fb1bc6126b8d9530199b2bb25cb82df451a5c3612fbf28ab7729756840bd',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                fields: {
+                    'Email': email,
+                    'Profil': profil,
+                    'Quiz': quiz,
+                    'Date': new Date().toLocaleDateString('fr-FR'),
+                    'Score': score.toString()
+                }
+            })
+        });
+    } catch(e) {}
+}
+
+async function submitEmail() {
     const email = document.getElementById('email-input').value;
-    if (email && email.includes('@')) { showResult(); }
-    else { document.getElementById('email-input').style.borderColor = '#ff4444'; }
+    if (email && email.includes('@')) {
+        const winner = getWinningProfile();
+        const maxScore = Math.max(...Object.values(scores));
+        await saveToAirtable(email, profiles[winner].name, 'Quiz Profil Investisseur', maxScore);
+        showResult();
+    } else {
+        document.getElementById('email-input').style.borderColor = '#ff4444';
+    }
 }
 
 function getWinningProfile() {
