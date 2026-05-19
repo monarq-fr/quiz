@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz MONARQ — Découvrez votre profil investisseur</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: #0D0D0D; color: #ffffff; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        body { font-family: 'Inter', sans-serif; background: #111; color: #ffffff; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
         .container { max-width: 680px; width: 100%; }
         .screen { display: none; }
         .screen.active { display: block; }
@@ -18,6 +19,7 @@
         .welcome-details { font-size: 14px; color: #555; margin-bottom: 48px; }
         .btn-primary { background: #C9A84C; color: #0D0D0D; border: none; padding: 16px 40px; font-size: 15px; font-weight: 700; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; }
         .btn-primary:hover { background: #d4b55a; transform: translateY(-1px); }
+        .btn-primary:disabled { background: #333; color: #666; cursor: not-allowed; transform: none; }
         .progress-container { margin-bottom: 40px; }
         .progress-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
         .progress-label { font-size: 12px; color: #555; letter-spacing: 1px; text-transform: uppercase; }
@@ -27,44 +29,40 @@
         .question-number { font-size: 12px; color: #C9A84C; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
         .question-text { font-size: clamp(20px, 3vw, 26px); font-weight: 700; line-height: 1.3; margin-bottom: 36px; }
         .options { display: flex; flex-direction: column; gap: 12px; }
-        .option { background: #111; border: 1px solid #1e1e1e; border-radius: 8px; padding: 18px 22px; cursor: pointer; transition: all 0.2s; text-align: left; font-family: 'Inter', sans-serif; font-size: 15px; color: #ccc; line-height: 1.4; }
-        .option:hover { border-color: #C9A84C; background: #161610; color: #fff; transform: translateX(4px); }
-        .option.selected { border-color: #C9A84C; background: #1a1708; color: #fff; }
-        .email-screen { text-align: center; }
-        .screen-title { font-size: clamp(24px, 4vw, 34px); font-weight: 800; margin-bottom: 12px; }
-        .screen-subtitle { font-size: 16px; color: #888; margin-bottom: 36px; line-height: 1.6; }
-        .email-input { width: 100%; background: #111; border: 1px solid #1e1e1e; border-radius: 8px; padding: 16px 20px; font-size: 16px; color: #fff; font-family: 'Inter', sans-serif; margin-bottom: 12px; transition: border-color 0.2s; }
-        .email-input:focus { outline: none; border-color: #C9A84C; }
-        .email-input::placeholder { color: #444; }
-        .email-skip { display: block; margin-top: 16px; font-size: 13px; color: #444; cursor: pointer; text-decoration: underline; background: none; border: none; font-family: 'Inter', sans-serif; }
-        .email-skip:hover { color: #666; }
-        .result-badge { display: inline-block; background: #1a1708; border: 1px solid #C9A84C; color: #C9A84C; font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; padding: 6px 16px; border-radius: 4px; margin-bottom: 24px; }
+        .option { background: #1a1a1a; border: 1px solid #252525; border-radius: 8px; padding: 18px 22px; cursor: pointer; transition: all 0.2s; text-align: left; font-family: 'Inter', sans-serif; font-size: 15px; color: #ccc; line-height: 1.4; }
+        .option:hover { border-color: #C9A84C; background: #1e1b10; color: #fff; transform: translateX(4px); }
+        .option.selected { border-color: #C9A84C; background: #1e1b10; color: #fff; }
+        .result-badge { display: inline-block; background: #1e1b10; border: 1px solid #C9A84C; color: #C9A84C; font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; padding: 6px 16px; border-radius: 4px; margin-bottom: 24px; }
         .result-title { font-size: clamp(30px, 5vw, 44px); font-weight: 800; margin-bottom: 8px; }
         .result-tagline { font-size: 16px; color: #C9A84C; font-style: italic; margin-bottom: 32px; }
-        .result-divider { height: 1px; background: #1e1e1e; margin: 32px 0; }
+        .result-divider { height: 1px; background: #252525; margin: 32px 0; }
         .result-section { margin-bottom: 32px; }
         .result-section-title { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #555; margin-bottom: 16px; }
         .result-text { font-size: 16px; color: #bbb; line-height: 1.7; }
         .traits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-        .trait-card { background: #111; border: 1px solid #1e1e1e; border-radius: 8px; padding: 16px; text-align: center; }
+        .trait-card { background: #1a1a1a; border: 1px solid #252525; border-radius: 8px; padding: 16px; text-align: center; }
         .trait-name { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 4px; }
         .trait-desc { font-size: 12px; color: #555; line-height: 1.4; }
-        .errors-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-        .errors-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: #bbb; line-height: 1.5; }
-        .errors-list li::before { content: "—"; color: #C9A84C; flex-shrink: 0; }
-        .message-fort { background: #111; border-left: 3px solid #C9A84C; padding: 20px 24px; border-radius: 0 8px 8px 0; font-size: 16px; color: #ddd; line-height: 1.7; font-style: italic; }
-        .cta-section { text-align: center; padding: 40px 0 20px; }
-        .cta-label { font-size: 13px; color: #555; margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase; }
-        .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-        .btn-secondary { background: transparent; color: #C9A84C; border: 1px solid #C9A84C; padding: 12px 24px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; text-decoration: none; display: inline-block; }
-        .btn-secondary:hover { background: #C9A84C; color: #0D0D0D; }
-        .disclaimer { font-size: 12px; color: #333; text-align: center; margin-top: 40px; line-height: 1.6; }
-        @media (max-width: 480px) { .traits-grid { grid-template-columns: 1fr; } .cta-buttons { flex-direction: column; } }
+        .unlock-section { background: #1a1a1a; border: 1px solid #252525; border-radius: 12px; padding: 32px; text-align: center; margin-top: 8px; }
+        .unlock-icon { font-size: 28px; margin-bottom: 16px; }
+        .unlock-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+        .unlock-subtitle { font-size: 14px; color: #666; margin-bottom: 8px; line-height: 1.6; }
+        .unlock-features { list-style: none; margin-bottom: 24px; display: flex; flex-direction: column; gap: 8px; }
+        .unlock-features li { font-size: 13px; color: #888; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .unlock-features li::before { content: "✓"; color: #C9A84C; font-weight: 700; }
+        .email-input { width: 100%; background: #111; border: 1px solid #252525; border-radius: 8px; padding: 14px 18px; font-size: 15px; color: #fff; font-family: 'Inter', sans-serif; margin-bottom: 10px; transition: border-color 0.2s; }
+        .email-input:focus { outline: none; border-color: #C9A84C; }
+        .email-input::placeholder { color: #444; }
+        .btn-pdf { background: #C9A84C; color: #0D0D0D; border: none; padding: 16px 32px; font-size: 15px; font-weight: 700; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn-pdf:hover { background: #d4b55a; transform: translateY(-1px); }
+        .disclaimer { font-size: 12px; color: #333; text-align: center; margin-top: 40px; line-height: 1.6; padding-bottom: 40px; }
+        @media (max-width: 480px) { .traits-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 <div class="container">
 
+    <!-- WELCOME -->
     <div class="screen active" id="screen-welcome">
         <div class="welcome-screen">
             <div class="logo">MONARQ</div>
@@ -75,6 +73,7 @@
         </div>
     </div>
 
+    <!-- QUIZ -->
     <div class="screen" id="screen-quiz">
         <div class="progress-container">
             <div class="progress-header">
@@ -90,62 +89,55 @@
         <div class="options" id="options-container"></div>
     </div>
 
-    <div class="screen" id="screen-email">
-        <div class="email-screen">
-            <div class="logo">MONARQ</div>
-            <h2 class="screen-title">Votre profil est prêt.</h2>
-            <p class="screen-subtitle">Entrez votre email pour recevoir votre analyse complète et les ressources adaptées à votre profil.</p>
-            <input type="email" class="email-input" id="email-input" placeholder="votre@email.com">
-            <button class="btn-primary" onclick="submitEmail()" style="width:100%">Recevoir mon profil →</button>
-            <button class="email-skip" onclick="showResult()">Continuer sans email</button>
-        </div>
-    </div>
-
+    <!-- RESULT -->
     <div class="screen" id="screen-result">
         <div class="logo" style="text-align:center;margin-bottom:32px">MONARQ</div>
+
+        <!-- TEASER -->
         <div style="text-align:center;margin-bottom:40px">
             <div class="result-badge">Votre profil</div>
             <h2 class="result-title" id="result-name"></h2>
             <p class="result-tagline" id="result-tagline"></p>
         </div>
+
         <div class="result-divider"></div>
+
         <div class="result-section">
             <div class="result-section-title">Qui vous êtes</div>
             <p class="result-text" id="result-summary"></p>
         </div>
+
         <div class="result-section">
             <div class="result-section-title">Vos traits caractéristiques</div>
             <div class="traits-grid" id="result-traits"></div>
         </div>
-        <div class="result-section">
-            <div class="result-section-title">Approche généralement adaptée</div>
-            <p class="result-text" id="result-approach"></p>
-        </div>
-        <div class="result-section">
-            <div class="result-section-title">Les erreurs à éviter</div>
-            <ul class="errors-list" id="result-errors"></ul>
-        </div>
-        <div class="result-section">
-            <div class="result-section-title">Ce qui vous fera vraiment progresser</div>
-            <div class="message-fort" id="result-message"></div>
-        </div>
+
         <div class="result-divider"></div>
-        <div class="result-section">
-            <div class="result-section-title">La philosophie MONARQ</div>
-            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
-                <div class="trait-card"><div class="trait-name">Simplicité</div><div class="trait-desc">Une stratégie simple tenue dans le temps bat toujours une stratégie complexe abandonnée.</div></div>
-                <div class="trait-card"><div class="trait-name">Long terme</div><div class="trait-desc">Le temps est l'un des rares avantages accessibles à tous les investisseurs particuliers.</div></div>
-                <div class="trait-card"><div class="trait-name">Discipline</div><div class="trait-desc">La régularité et le contrôle émotionnel comptent davantage que le placement parfait.</div></div>
+
+        <!-- UNLOCK SECTION -->
+        <div class="unlock-section">
+            <div class="unlock-icon">🔒</div>
+            <h3 class="unlock-title">Votre analyse complète vous attend</h3>
+            <p class="unlock-subtitle">Entrez votre email pour télécharger gratuitement votre profil complet MONARQ.</p>
+            <ul class="unlock-features">
+                <li>Approche d'investissement adaptée à votre profil</li>
+                <li>Les erreurs les plus fréquentes à éviter</li>
+                <li>Ce qui vous fera vraiment progresser</li>
+                <li>La philosophie et le plan d'action MONARQ</li>
+            </ul>
+
+            <div id="email-form">
+                <input type="email" class="email-input" id="email-input" placeholder="votre@email.com">
+                <button class="btn-primary" onclick="submitEmail()" style="width:100%">Débloquer mon analyse complète →</button>
+            </div>
+
+            <div id="pdf-section" style="display:none">
+                <button class="btn-pdf" onclick="downloadPDF()">
+                    <span>⬇</span> Télécharger mon profil complet
+                </button>
             </div>
         </div>
-        <div class="result-divider"></div>
-        <div class="cta-section">
-            <p class="cta-label">Continuer avec MONARQ</p>
-            <div class="cta-buttons">
-                <a href="https://youtube.com/@monarq" class="btn-secondary" target="_blank">Voir les vidéos</a>
-                <a href="#" class="btn-secondary" target="_blank">Rejoindre la newsletter</a>
-            </div>
-        </div>
+
         <p class="disclaimer">© MONARQ — Contenu éducatif uniquement. Ne constitue pas un conseil financier personnalisé.</p>
     </div>
 
@@ -205,6 +197,7 @@ const profiles = {
 
 let currentQuestion = 0;
 let scores = { P: 0, E: 0, PI: 0, V: 0 };
+let currentProfileKey = null;
 
 function startQuiz() { showScreen('screen-quiz'); renderQuestion(); }
 
@@ -233,8 +226,29 @@ function selectAnswer(profile, btn) {
     setTimeout(() => {
         currentQuestion++;
         if (currentQuestion < questions.length) { renderQuestion(); }
-        else { showScreen('screen-email'); }
+        else { showResult(); }
     }, 300);
+}
+
+function getWinningProfile() {
+    return Object.entries(scores).reduce((a, b) => a[1] > b[1] ? a : b)[0];
+}
+
+function showResult() {
+    currentProfileKey = getWinningProfile();
+    const profile = profiles[currentProfileKey];
+
+    document.getElementById('result-name').textContent = profile.name;
+    document.getElementById('result-tagline').textContent = profile.tagline;
+    document.getElementById('result-summary').textContent = profile.summary;
+
+    const traitsContainer = document.getElementById('result-traits');
+    traitsContainer.innerHTML = '';
+    profile.traits.forEach(t => {
+        traitsContainer.innerHTML += `<div class="trait-card"><div class="trait-name">${t.name}</div><div class="trait-desc">${t.desc}</div></div>`;
+    });
+
+    showScreen('screen-result');
 }
 
 async function saveToAirtable(email, profil, quiz, score) {
@@ -260,34 +274,271 @@ async function saveToAirtable(email, profil, quiz, score) {
 
 async function submitEmail() {
     const email = document.getElementById('email-input').value;
-    if (email && email.includes('@')) {
-        const winner = getWinningProfile();
-        const maxScore = Math.max(...Object.values(scores));
-        await saveToAirtable(email, profiles[winner].name, 'Quiz Profil Investisseur', maxScore);
-        showResult();
-    } else {
+    if (!email || !email.includes('@')) {
         document.getElementById('email-input').style.borderColor = '#ff4444';
+        return;
     }
+    const profile = profiles[currentProfileKey];
+    const maxScore = Math.max(...Object.values(scores));
+    await saveToAirtable(email, profile.name, 'Quiz Profil Investisseur', maxScore);
+
+    document.getElementById('email-form').style.display = 'none';
+    document.getElementById('pdf-section').style.display = 'block';
+
+    const unlockSection = document.querySelector('.unlock-section');
+    unlockSection.querySelector('.unlock-icon').textContent = '✅';
+    unlockSection.querySelector('.unlock-title').textContent = 'Votre analyse est prête !';
+    unlockSection.querySelector('.unlock-subtitle').textContent = 'Cliquez ci-dessous pour télécharger votre profil complet.';
 }
 
-function getWinningProfile() {
-    return Object.entries(scores).reduce((a, b) => a[1] > b[1] ? a : b)[0];
-}
+function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    const profile = profiles[currentProfileKey];
 
-function showResult() {
-    const profile = profiles[getWinningProfile()];
-    document.getElementById('result-name').textContent = profile.name;
-    document.getElementById('result-tagline').textContent = profile.tagline;
-    document.getElementById('result-summary').textContent = profile.summary;
-    document.getElementById('result-approach').textContent = profile.approach;
-    document.getElementById('result-message').textContent = profile.message;
-    const traitsContainer = document.getElementById('result-traits');
-    traitsContainer.innerHTML = '';
-    profile.traits.forEach(t => { traitsContainer.innerHTML += `<div class="trait-card"><div class="trait-name">${t.name}</div><div class="trait-desc">${t.desc}</div></div>`; });
-    const errorsContainer = document.getElementById('result-errors');
-    errorsContainer.innerHTML = '';
-    profile.errors.forEach(e => { errorsContainer.innerHTML += `<li>${e}</li>`; });
-    showScreen('screen-result');
+    // PAGE 1 — COVER
+    doc.setFillColor(13, 13, 13);
+    doc.rect(0, 0, 210, 297, 'F');
+    doc.setTextColor(201, 168, 76);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'bold');
+    doc.text('M O N A R Q', 105, 90, { align: 'center' });
+    doc.setTextColor(120, 120, 120);
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Votre profil investisseur', 105, 108, { align: 'center' });
+    doc.setDrawColor(201, 168, 76);
+    doc.setLineWidth(0.3);
+    doc.line(60, 118, 150, 118);
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(26);
+    doc.setFont('helvetica', 'bold');
+    doc.text(profile.name, 105, 140, { align: 'center' });
+    doc.setTextColor(201, 168, 76);
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'italic');
+    const taglineClean = profile.tagline.replace(/"/g, '');
+    doc.text(taglineClean, 105, 158, { align: 'center' });
+    doc.setTextColor(60, 60, 60);
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'normal');
+    doc.text('© MONARQ — Contenu éducatif uniquement. Ne constitue pas un conseil financier personnalisé.', 105, 285, { align: 'center' });
+
+    // PAGE 2 — PROFIL
+    doc.addPage();
+    doc.setFillColor(255, 255, 255);
+    doc.rect(0, 0, 210, 297, 'F');
+
+    let y = 18;
+    doc.setTextColor(201, 168, 76);
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'bold');
+    doc.text('MONARQ', 20, y);
+    doc.setTextColor(180, 180, 180);
+    doc.text(profile.name.toUpperCase(), 190, y, { align: 'right' });
+    doc.setDrawColor(230, 230, 230);
+    doc.setLineWidth(0.3);
+    doc.line(20, y + 4, 190, y + 4);
+    y += 16;
+
+    const addSection = (title, content) => {
+        doc.setTextColor(150, 150, 150);
+        doc.setFontSize(7.5);
+        doc.setFont('helvetica', 'bold');
+        doc.text(title, 20, y);
+        y += 7;
+        doc.setTextColor(40, 40, 40);
+        doc.setFontSize(10);
+        doc.setFont('helvetica', 'normal');
+        const lines = doc.splitTextToSize(content, 170);
+        doc.text(lines, 20, y);
+        y += lines.length * 5 + 10;
+    };
+
+    addSection('QUI VOUS ÊTES', profile.summary);
+
+    doc.setTextColor(150, 150, 150);
+    doc.setFontSize(7.5);
+    doc.setFont('helvetica', 'bold');
+    doc.text('VOS TRAITS CARACTÉRISTIQUES', 20, y);
+    y += 8;
+
+    profile.traits.forEach(t => {
+        doc.setTextColor(40, 40, 40);
+        doc.setFontSize(10);
+        doc.setFont('helvetica', 'bold');
+        doc.text(t.name, 20, y);
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor(100, 100, 100);
+        doc.setFontSize(9);
+        doc.text(t.desc, 20, y + 5);
+        y += 14;
+    });
+
+    y += 4;
+    addSection('APPROCHE GÉNÉRALEMENT ADAPTÉE', profile.approach);
+
+    doc.setTextColor(150, 150, 150);
+    doc.setFontSize(7.5);
+    doc.setFont('helvetica', 'bold');
+    doc.text('LES ERREURS À ÉVITER', 20, y);
+    y += 7;
+
+    profile.errors.forEach(e => {
+        doc.setTextColor(40, 40, 40);
+        doc.setFontSize(10);
+        doc.setFont('helvetica', 'normal');
+        const lines = doc.splitTextToSize('— ' + e, 170);
+        doc.text(lines, 20, y);
+        y += lines.length * 5 + 4;
+    });
+
+    y += 6;
+    doc.setFillColor(201, 168, 76);
+    doc.rect(20, y, 2, 22, 'F');
+    doc.setTextColor(60, 60, 60);
+    doc.setFontSize(9.5);
+    doc.setFont('helvetica', 'italic');
+    const msgLines = doc.splitTextToSize(profile.message, 162);
+    doc.text(msgLines, 26, y + 5);
+
+    // PAGE 3 — PHILOSOPHIE
+    doc.addPage();
+    doc.setFillColor(255, 255, 255);
+    doc.rect(0, 0, 210, 297, 'F');
+
+    y = 18;
+    doc.setTextColor(201, 168, 76);
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'bold');
+    doc.text('MONARQ', 20, y);
+    doc.setTextColor(180, 180, 180);
+    doc.text('LA PHILOSOPHIE', 190, y, { align: 'right' });
+    doc.setDrawColor(230, 230, 230);
+    doc.line(20, y + 4, 190, y + 4);
+    y += 20;
+
+    doc.setTextColor(40, 40, 40);
+    doc.setFontSize(16);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Construire un système financier', 20, y);
+    y += 8;
+    doc.text('simple, solide et durable.', 20, y);
+    y += 16;
+
+    doc.setTextColor(100, 100, 100);
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    const introText = "La plupart des investisseurs particuliers ne perdent pas parce qu'ils manquent d'intelligence. Ils perdent souvent à cause des émotions, des frais invisibles, des décisions impulsives, ou des stratégies trop complexes pour être tenues dans le temps.";
+    const introLines = doc.splitTextToSize(introText, 170);
+    doc.text(introLines, 20, y);
+    y += introLines.length * 5 + 16;
+
+    const pillars = [
+        { num: '1', title: 'Simplicité', desc: "Une stratégie simple est souvent plus efficace qu'une stratégie compliquée impossible à suivre correctement." },
+        { num: '2', title: 'Long terme', desc: "Les marchés évoluent constamment à court terme. Le temps reste l'un des rares avantages accessibles aux investisseurs particuliers." },
+        { num: '3', title: 'Discipline', desc: "La régularité et le contrôle émotionnel comptent souvent davantage que la recherche du placement parfait." }
+    ];
+
+    pillars.forEach(p => {
+        doc.setFillColor(245, 245, 245);
+        doc.roundedRect(20, y - 4, 170, 28, 3, 3, 'F');
+        doc.setTextColor(201, 168, 76);
+        doc.setFontSize(14);
+        doc.setFont('helvetica', 'bold');
+        doc.text(p.num, 30, y + 10);
+        doc.setTextColor(40, 40, 40);
+        doc.setFontSize(11);
+        doc.text(p.title, 44, y + 5);
+        doc.setTextColor(100, 100, 100);
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'normal');
+        const descLines = doc.splitTextToSize(p.desc, 135);
+        doc.text(descLines, 44, y + 12);
+        y += 36;
+    });
+
+    // PAGE 4 — PLAN D'ACTION
+    doc.addPage();
+    doc.setFillColor(255, 255, 255);
+    doc.rect(0, 0, 210, 297, 'F');
+
+    y = 18;
+    doc.setTextColor(201, 168, 76);
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'bold');
+    doc.text('MONARQ', 20, y);
+    doc.setTextColor(180, 180, 180);
+    doc.text("PLAN D'ACTION", 190, y, { align: 'right' });
+    doc.setDrawColor(230, 230, 230);
+    doc.line(20, y + 4, 190, y + 4);
+    y += 20;
+
+    doc.setTextColor(40, 40, 40);
+    doc.setFontSize(16);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Une progression simple vaut mieux', 20, y);
+    y += 8;
+    doc.text("qu'un plan parfait jamais appliqué.", 20, y);
+    y += 18;
+
+    const steps = [
+        { n: '01', title: 'Comprendre votre profil', desc: "Votre comportement face au risque influence souvent davantage vos résultats que le choix exact d'un produit financier." },
+        { n: '02', title: 'Construire une base simple', desc: "Avant de chercher à optimiser, l'objectif est d'avoir une stratégie claire, compréhensible, et suffisamment stable pour être tenue dans le temps." },
+        { n: '03', title: 'Avancer progressivement', desc: "Investir n'est pas une course. La régularité compte souvent davantage que l'intensité." },
+        { n: '04', title: 'Réduire le bruit', desc: "Les marchés financiers génèrent beaucoup d'émotions et de distractions. La discipline consiste à éviter les décisions impulsives." }
+    ];
+
+    steps.forEach(s => {
+        doc.setFillColor(13, 13, 13);
+        doc.circle(26, y + 4, 5, 'F');
+        doc.setTextColor(201, 168, 76);
+        doc.setFontSize(7);
+        doc.setFont('helvetica', 'bold');
+        doc.text(s.n, 26, y + 6, { align: 'center' });
+        doc.setTextColor(40, 40, 40);
+        doc.setFontSize(11);
+        doc.setFont('helvetica', 'bold');
+        doc.text(s.title, 36, y + 4);
+        doc.setTextColor(100, 100, 100);
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'normal');
+        const descLines = doc.splitTextToSize(s.desc, 154);
+        doc.text(descLines, 36, y + 11);
+        y += descLines.length * 4.5 + 18;
+    });
+
+    // PAGE 5 — CTA
+    doc.addPage();
+    doc.setFillColor(13, 13, 13);
+    doc.rect(0, 0, 210, 297, 'F');
+    doc.setTextColor(201, 168, 76);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'bold');
+    doc.text('M O N A R Q', 105, 100, { align: 'center' });
+    doc.setDrawColor(201, 168, 76);
+    doc.setLineWidth(0.3);
+    doc.line(70, 108, 140, 108);
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(18);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Continuez votre progression', 105, 128, { align: 'center' });
+    doc.setTextColor(120, 120, 120);
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    const ctaText = "L'investissement n'est pas réservé aux experts de la finance. Mais il demande une chose essentielle : construire un système que vous serez capable de garder lorsque les marchés deviendront émotionnellement difficiles.";
+    const ctaLines = doc.splitTextToSize(ctaText, 150);
+    doc.text(ctaLines, 105, 148, { align: 'center' });
+    doc.setTextColor(201, 168, 76);
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'bold');
+    doc.text('youtube.com/@monarq', 105, 210, { align: 'center' });
+    doc.setTextColor(60, 60, 60);
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'normal');
+    doc.text('© MONARQ — Contenu éducatif uniquement. Ne constitue pas un conseil financier personnalisé.', 105, 285, { align: 'center' });
+
+    doc.save('MONARQ-Profil-' + profile.name.replace(/\s/g, '-') + '.pdf');
 }
 
 function showScreen(id) {
